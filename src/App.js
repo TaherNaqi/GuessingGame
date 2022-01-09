@@ -1,16 +1,23 @@
 import "./App.css";
 import React, { useState } from "react";
-
+// definding randomnum outside of the app function to keep it constant
 const RandomNum = Math.floor(Math.random() * 100);
 
 function App() {
+  // states to be used in the react app
+
   const [tries, settries] = useState(4);
+  const [sekWisdom, setSeekWisdom] = useState([]);
+  const [Btn, setBtn] = useState("");
   let input;
   console.log(RandomNum);
   const wisdom = [];
   function takeInput(value) {
     input = value;
   }
+
+  // checking on input in relation to the random number
+
   function comparison() {
     console.log(`random number ${RandomNum}`);
     console.log(`input ${input}`);
@@ -28,9 +35,7 @@ function App() {
       setBtn("Invalid input");
     }
   }
-
-  const [sekWisdom, setSeekWisdom] = useState([]);
-  const [Btn, setBtn] = useState("");
+  //Generating an array of random numbers within ranges of random number generated at start
   function pushintowisdom() {
     setSeekWisdom([
       Math.floor(Math.random() * (100 - RandomNum) + RandomNum),
@@ -40,7 +45,11 @@ function App() {
       Math.floor(Math.random() * (25 - RandomNum) + RandomNum),
     ]);
   }
-  const mappedWisdom = sekWisdom.map((wisdom) => <button>{wisdom}</button>);
+  const mappedWisdom = sekWisdom.map((wisdom) => (
+    <button class="button" onClick={(input = wisdom)}>
+      {wisdom}
+    </button>
+  ));
   return (
     <div className="App">
       <h1>This is the guessing game</h1>
@@ -51,10 +60,12 @@ function App() {
       <input
         type="number"
         onChange={(e) => takeInput(e.target.value)}
-        placeholder="Number between 1-100"
+        placeholder="Number from 1-100"
       />
       <div>
+        <br />
         <button
+          class="button"
           onClick={() => {
             if (input) comparison();
           }}
@@ -64,8 +75,13 @@ function App() {
       </div>
       <div>
         <br />
-        <button onClick={() => settries(4)}>Surrender</button>
-        <button onClick={pushintowisdom}>Seek Wisdoms</button>
+        <button class="button" onClick={() => settries(4)}>
+          Surrender
+        </button>
+        <button class="button" onClick={pushintowisdom}>
+          Seek Wisdoms
+        </button>
+        <br />
         <br />
         {mappedWisdom}
         <div>

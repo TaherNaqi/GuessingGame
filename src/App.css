@@ -39,3 +39,19 @@
     transform: rotate(360deg);
   }
 }
+
+.button {
+  background-color: rgb(21, 225, 251);
+  border: none;
+  color: black;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 1px;
+}
+button:hover {
+  cursor: pointer;
+  color: white;
+}
